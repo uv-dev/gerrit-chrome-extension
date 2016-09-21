@@ -32,6 +32,10 @@
         color: #888;
       }
 
+      #list {
+        border: 0px;
+      }
+
     </style>
 
     <!--
@@ -43,6 +47,18 @@
     <script src="popup.js"></script>
   </head>
   <body>
-    <dl id="list">
+    <table id="list">
+      <thead>
+        <tr>
+          <th><!-- Link --></th>
+          <th><!-- Message --></th>
+          <th><!-- Delta --></th>
+          <th>CR</th>
+          <th>V</th>
+        </tr>
+      </thead>
+      <tbody id="list_body">
+      </tbody>
+    </table>
   </body>
 </html>

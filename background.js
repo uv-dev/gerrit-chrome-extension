@@ -3,6 +3,8 @@ function fetchChanges(update_id) {
     chrome.browserAction.setBadgeBackgroundColor({ color: "#F00" });
     var query = localStorage["query"]
         || (["is:open", "reviewer:self", "-owner:self"].join('+') + "&o=LABELS");
+    console.debug("query = " + query);
+    queryChangeList(query).then(
        function(result) {
             console.debug("got changes:", result.length);
             chrome.storage.local.set({ 'changes': result });

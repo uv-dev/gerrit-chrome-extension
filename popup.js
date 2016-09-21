@@ -1,16 +1,48 @@
 var BASE_URL = localStorage["api_endpoint"];
 
-function makeDD(change) {
-    var dd = document.createElement('dd');
-    dd.title = JSON.stringify(change, null, "  ");
-    dd.textContent = change.subject;
-    if (change.read)
-        dd.className = "read";
-    return dd;
+function getDelta(change) {
+  var td = document.createElement('td');
+  var ins = change.insertions ? change.insertions : 0;
+  var del = change.deletions ? change.deletions : 0;
+  td.textContent = "+" + ins + ",-" + del;
+  return td;
+}
+
+function getCodeReview(change) {
+  var review = change.labels['Code-Review'];
+  var cr = review.rejected ? -2
+    : review.disliked ? -1
+    : review.recommended ? 1
+    : review.approved ? 2
+    : 0;
+  var td = document.createElement('td');
+  td.textContent = cr == 2 ? "+2"
+    : cr == 1 ? "+1"
+    : cr == 0 ? ""
+    : cr == -1 ? "-1"
+    : "-2";
+  td.style['color'] = cr > 0 ? "green"
+    : cr < 0 ? "red"
+    : "";
+  return td;
+}
+
+function getVerified(change) {
+  var verified = change.labels.Verified.approved ? 1
+    : change.labels.Verified.rejeced ? -1
+    : false;
+  var td = document.createElement(td);
+  td.textContent = verified > 0 ? "+1"
+    : verified < 0 ? "-1"
+    : "";
+  td.style['color'] = verified > 0 ? "green"
+    : verified < 0 ? "red"
+    : "";
+  return td;
 }
 
 function initUI(items) {
-    var list = document.getElementById('list');
+    var list = document.getElementById('list_body');
     list.innerHTML = "";
     for (var i = 0; i < items.changes.length; i++) {
         var change = items.changes[i];
@@ -22,22 +54,36 @@ function initUI(items) {
         } catch (e) {
         }
 
-        var dt = document.createElement('dt');
+        var tr = document.createElement('tr');
+        var link = document.createElement('td');
+        var message = document.createElement('td');
+
         var a = document.createElement('a');
         a.href = "#";
         a.addEventListener('click', function(e) {
             chrome.tabs.update(null, {
-                url: BASE_URL + "/" + this.textContent
+                url: BASE_URL + "/" + change._number
             })
         })
 
-        a.textContent = change._number;
-        dt.appendChild(a);
-        list.appendChild(dt);
+        a.textContent = "cl/" + change._number;
+        link.appendChild(a);
 
-        list.appendChild(makeDD(change));
+        message.textContent = change.subject;
+
+        tr.appendChild(link);
+        tr.appendChild(message);
+        tr.appendChild(getDelta(change));
+        tr.appendChild(getCodeReview(change));
+        tr.appendChild(getVerified(change));
+
+        if (change.read) {
+            tr.className = "read";
+        }
+
         // TODO Use change.labels.Verified and change.labels.Code-Review here
         // See https://gerrit.magicleap.com/Documentation/rest-api-changes.html#list-changes
+        list.appendChild(tr);
     }
 }
 
