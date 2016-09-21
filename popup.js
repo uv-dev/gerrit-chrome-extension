@@ -36,6 +36,8 @@ function initUI(items) {
         list.appendChild(dt);
 
         list.appendChild(makeDD(change));
+        // TODO Use change.labels.Verified and change.labels.Code-Review here
+        // See https://gerrit.magicleap.com/Documentation/rest-api-changes.html#list-changes
     }
 }
 
