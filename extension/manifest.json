@@ -3,7 +3,7 @@
 
     "name": "Gerrit Reviews",
     "description": "Hello Chrome (from Gerrit).",
-    "version": "0.3",
+    "version": "0.4",
 
     "permissions": [
         "alarms",
