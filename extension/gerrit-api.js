@@ -1,7 +1,7 @@
 function queryChangeList(q) {
-  var api_endpoint = localStorage['api_endpoint'];
-  var uname = localStorage['uname'];
-  var http_password = localStorage['http_password'];
+  var api_endpoint = localStorage.api_endpoint;
+  var uname = localStorage.uname;
+  var http_password = localStorage.http_password;
   chrome.webRequest.onAuthRequired.addListener(function(details) {
       return {
           authCredentials: {
