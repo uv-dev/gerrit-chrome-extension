@@ -55,7 +55,9 @@ function onStartup() {
       updateIcon(items.changes);
     });
   fetchChanges();
-  chrome.alarms.create('refresh', {periodInMinutes: 15});
+  chrome.storage.local.get('refresh', function(items) {
+      chrome.alarms.create('refresh', {periodInMinutes: items.refresh});
+    });
   chrome.browserAction.setBadgeBackgroundColor({color: '#000'});
 }
 
