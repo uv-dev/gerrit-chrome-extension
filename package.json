@@ -1,0 +1,10 @@
+{
+  "name": "gerrit-chrome-extension",
+  "version": "1.0",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-jscs": "^3.0.1"
+  }
+}
