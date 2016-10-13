@@ -1,18 +1,45 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>My Test Extension Options</title>
-    </head>
-    <body>
-        api_endpoint: <input id="api_endpoint"><br>
-        query: <input id="query"><br>
-        <h4>For authenticated APIs</h4>
-        uname: <input id="uname"><br>
-        http password: <input id="http_password"><br>
-        <div id="status"></div>
-        <button id="save">Save</button>
-        <p/>
-        Click here to see what your query will return:<br/>
-        <span id="test-url"></span>
-    </body>
+  <head>
+    <link rel="stylesheet" href="styles/options.css">
+  </head>
+  <body>
+    <div id="settings">
+    <h3>Gerrit setting</h3>
+    <div class="setting-container">
+      <label class="hflex">
+        <span class="setting-label">api_endpoint</span>
+        <span class="setting-ui"><input id="api_endpoint" type="text"></span>
+      </label>
+    </div>
+    <div class="setting-container">
+      <label class="hflex">
+        <span class="setting-label">query</span>
+        <span class="setting-ui"><input id="query" type="text"></span>
+      </label>
+    </div>
+    <hr>
+    <h3>For authenticated APIs</h3>
+    <div class="setting-container">
+      <label class="hflex">
+        <span class="setting-label">uname</span>
+        <span class="setting-ui"><input id="uname" type="text"></span>
+      </label>
+    </div>
+    <div class="setting-container">
+      <label class="hflex">
+        <span class="setting-label">http password</span>
+        <span class="setting-ui"><input id="http_password" type="password"></span>
+      </label>
+    </div>
+    <hr>
+    <div id="status"></div>
+    <h3>Query preview</h3>
+    Click here to see what your query will return:<br/>
+    <span id="test-url"></span>
+    <hr>
+    <div align="right"><button id="save">Save</button></div>
+    </div>
     <script src="options.js"></script>
+  </body>
 </html>
