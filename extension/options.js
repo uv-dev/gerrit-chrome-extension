@@ -3,6 +3,7 @@ function save_options() {
   try {
     localStorage['api_endpoint'] = document.getElementById('api_endpoint').value.replace(/\/*$/, '');
     localStorage['uname'] = document.getElementById('uname').value || '';
+    localStorage['refresh'] = document.getElementById('refresh').value || '';
     localStorage['http_password'] = document.getElementById('http_password').value || '';
     localStorage['query'] = document.getElementById('query').value || '';
     // TODO: chrome.permissions.request
@@ -21,6 +22,7 @@ function getLocalStorageValue(key, def) {
 function restore_options() {
   document.getElementById('api_endpoint').value = getLocalStorageValue('api_endpoint', '');
   document.getElementById('uname').value = getLocalStorageValue('uname', '');
+  document.getElementById('refresh').value = getLocalStorageValue('refresh', '5');
   document.getElementById('http_password').value = getLocalStorageValue('http_password', '');
   document.getElementById('query').value = getLocalStorageValue('query', '');
 }
