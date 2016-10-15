@@ -11,6 +11,7 @@
         "tabs",
         "webNavigation",
         "webRequest",
+        "webRequestBlocking",
         "http://*/*", "https://*/*"
     ],
 

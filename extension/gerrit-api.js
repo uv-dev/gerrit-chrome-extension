@@ -10,7 +10,7 @@ function queryChangeList(q) {
             }
         };
     },
-  {urls: ['<all_urls>']},
+  {urls: [api_endpoint + '/*']},
   ['blocking']);
   return new Promise(function(resolve, reject) {
       var xhr = new XMLHttpRequest();
