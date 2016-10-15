@@ -43,6 +43,10 @@ function favicon(url) {
   return (scheme ? scheme + '://' : '') + host.split('/').shift() + '/favicon.ico';
 }
 
+function getAlarmRefreshMinute() {
+  return typeof localStorage.refresh !== 'undefined' ?
+    parseInt(localStorage.refresh) : 5;
+}
 function onStartup() {
   console.debug('background.onStartup...');
 
@@ -55,9 +59,7 @@ function onStartup() {
       updateIcon(items.changes);
     });
   fetchChanges();
-  chrome.storage.local.get('refresh', function(items) {
-      chrome.alarms.create('refresh', {periodInMinutes: items.refresh});
-    });
+  chrome.alarms.create('refresh', {periodInMinutes: getAlarmRefreshMinute()});
   chrome.browserAction.setBadgeBackgroundColor({color: '#000'});
 }
 
