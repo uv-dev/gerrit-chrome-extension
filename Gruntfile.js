@@ -23,9 +23,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jscs');
 
-  // Default task.
+  grunt.registerTask('browserify' function() {
+  });
+
   grunt.registerTask('default', ['jshint', 'jscs', 'watch']);
 
-  // Test task
   grunt.registerTask('test', ['jshint', 'jscs']);
+
+  // TODO: Fix jjshint errors and add `jshint` into build task.
+  grunt.registerTask('build', ['browserify']);
 };
