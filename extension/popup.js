@@ -73,8 +73,10 @@ function initUI(items) {
     tr.appendChild(link);
     tr.appendChild(message);
     tr.appendChild(getDelta(change));
-    tr.appendChild(getCodeReview(change));
-    tr.appendChild(getVerified(change));
+    if (typeof change.labels != 'undefined') {
+      tr.appendChild(getCodeReview(change));
+      tr.appendChild(getVerified(change));
+    }
 
     if (change.read) {
       tr.className = 'read';
