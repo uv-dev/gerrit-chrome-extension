@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles/options.css">
+  </head>
+  <body>
+    <div id="settings">
+    <h3>Configurations</h3>
+    <div class="setting-container">
+      <label class="hflex">
+        <span class="setting-label">api_endpoint</span>
+        <span class="setting-ui"><input id="api_endpoint" type="text"></span>
+      </label>
+    </div>
+    <div class="setting-container">
+      <label class="hflex">
+        <span class="setting-label">query</span>
+        <span class="setting-ui"><input id="query" type="text"></span>
+      </label>
+    </div>
+    <div class="setting-container">
+      <label class="hflex">
+        <span class="setting-label">refresh</span>
+        <span class="setting-ui"><input id="refresh" type="number" placeholder="(minutes)"></span>
+      </label>
+    </div>
+    <hr>
+    <h3>For authenticated APIs</h3>
+    <div class="setting-container">
+      <label class="hflex">
+        <span class="setting-label">uname</span>
+        <span class="setting-ui"><input id="uname" type="text"></span>
+      </label>
+    </div>
+    <div class="setting-container">
+      <label class="hflex">
+        <span class="setting-label">http password</span>
+        <span class="setting-ui"><input id="http_password" type="password"></span>
+      </label>
+    </div>
+    <hr>
+    <div id="status"></div>
+    <h3>Query preview</h3>
+    Click here to see what your query will return:<br/>
+    <span id="test-url"></span>
+    <hr>
+    <div align="right"><button id="save">Save</button></div>
+    </div>
+    <script src="scripts/options.js"></script>
+  </body>
+</html>
