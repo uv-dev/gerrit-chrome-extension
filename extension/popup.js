@@ -1,5 +1,3 @@
-var BASE_URL = localStorage['api_endpoint'];
-
 function getDelta(change) {
   var td = document.createElement('td');
   var ins = change.insertions ? change.insertions : 0;
@@ -60,13 +58,14 @@ function initUI(items) {
 
     var a = document.createElement('a');
     a.href = '#';
+	var BASE_URL = localStorage['api_endpoint'];
     a.addEventListener('click', function(e) {
-        chrome.tabs.update(null, {
-            url: BASE_URL + '/' + change._number
-          });
+      chrome.tabs.update(null, {
+          url: BASE_URL + '/' + this.textContent
       });
+    });
 
-    a.textContent = 'cl/' + change._number;
+    a.textContent = change._number;
     link.appendChild(a);
 
     message.textContent = change.subject;
@@ -88,16 +87,16 @@ function initUI(items) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    chrome.storage.local.get(['changes', 'timestamps'], initUI);
-  });
+  chrome.storage.local.get(['changes', 'timestamps'], initUI);
+});
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
-    if (changes.changes && changes.timestamps) {
-      initUI({
-          'changes': changes.changes.newValue,
-          'timestamps': changes.timestamps.newValue
-        });
-    } else {
-      chrome.storage.local.get(['changes', 'timestamps'], initUI);
-    }
-  });
+  if (changes.changes && changes.timestamps) {
+    initUI({
+        'changes': changes.changes.newValue,
+        'timestamps': changes.timestamps.newValue
+    });
+  } else {
+    chrome.storage.local.get(['changes', 'timestamps'], initUI);
+  }
+});
