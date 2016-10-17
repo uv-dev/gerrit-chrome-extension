@@ -15,7 +15,10 @@ module.exports = function(grunt) {
     browserify: {
       scripts:{
         files:{
-          '<%= config.dist %>/popup.js': ['<%= config.extension %>/popup.js']
+          '<%= config.dist %>/scripts/popup.js': ['<%= config.extension %>/scripts/popup.js'],
+          '<%= config.dist %>/scripts/options.js': ['<%= config.extension %>/scripts/options.js'],
+          '<%= config.dist %>/scripts/background.js': ['<%= config.extension %>/scripts/background.js'],
+          '<%= config.dist %>/scripts/gerrit-api.js': ['<%= config.extension %>/scripts/gerrit-api.js']
         }
       }
     },
@@ -29,8 +32,9 @@ module.exports = function(grunt) {
           cwd: '<%= config.extension %>',
           dest: '<%= config.dist %>',
           src: [
-            '*.png',
             '{,*/}*.html',
+            'images/{,*/}*.png',
+            'manifest.json',
             'styles/{,*/}*.css'
           ]
         }]
@@ -38,27 +42,21 @@ module.exports = function(grunt) {
     },
     jshint: {
       all: {
-        src: ['<%= config.extension %>/*.js']
+        src: ['<%= config.extension %>/scripts/*.js']
       }
     },
     jscs: {
-      src: ['Gruntfile.js', '<%= config.extension %>/*.js'],
+      src: ['Gruntfile.js', '<%= config.extension %>/scripts/*.js'],
       options: {
         config: '.jscsrc',
         fix: true
       }
     },
     watch: {
-      files: ['<%= config.extension %>/*.js'],
+      files: ['<%= config.extension %>/scripts/*.js'],
       tasks: ['jshint', 'jscs', 'browserify']
     }
   });
-
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-jscs');
 
   grunt.registerTask('default', ['jshint', 'jscs', 'watch']);
 

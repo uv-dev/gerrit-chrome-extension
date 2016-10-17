@@ -13,6 +13,7 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-jscs": "^3.0.1",
-    "grunt-rework": "^0.1.0"
+    "grunt-rework": "^0.1.0",
+    "load-grunt-tasks": "^3.5.2"
   }
 }
