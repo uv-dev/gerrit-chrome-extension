@@ -1,7 +1,7 @@
 function fetchChanges(update_id) {
   console.debug('fetching changes...');
   chrome.browserAction.setBadgeBackgroundColor({color: '#F00'});
-  var query = localStorage['query'] ||
+  var query = localStorage.query ||
       (['is:open', 'reviewer:self', '-owner:self'].join('+') + '&o=LABELS');
   console.debug('query = ' + query);
   queryChangeList(query).then(
@@ -38,7 +38,7 @@ function onAlarm(alarm) {
 function favicon(url) {
   var split = url.split('://');
   var host = split.pop();
-  if (!host) throw new Error;
+  if (!host) throw new Error();
   var scheme = split.pop();
   return (scheme ? scheme + '://' : '') + host.split('/').shift() + '/favicon.ico';
 }
@@ -83,7 +83,7 @@ chrome.runtime.onSuspendCanceled.addListener(function() {
     chrome.browserAction.setBadgeBackgroundColor({color: '#F0F'});
   });
 chrome.storage.onChanged.addListener(function(changes, namespace) {
-    for (key in changes) {
+    for (var key in changes) {
       var storageChange = changes[key];
       console.debug('Storage key "%s" in namespace "%s" changed. ' +
           'Old value was "%s", new value is "%s".',
@@ -98,12 +98,12 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
   });
 chrome.webNavigation.onReferenceFragmentUpdated.addListener(onNavigate, {
     url: [
-        {hostSuffix: localStorage['api_endpoint'].split('://').pop()}
+        {hostSuffix: localStorage.api_endpoint.split('://').pop()}
     ]
   });
 chrome.webNavigation.onCommitted.addListener(onNavigate, {
     url: [
-        {hostSuffix: localStorage['api_endpoint'].split('://').pop()}
+        {hostSuffix: localStorage.api_endpoint.split('://').pop()}
     ]
   });
 
