@@ -19,7 +19,7 @@ function getCodeReview(change) {
     : cr == 0 ? ''
     : cr == -1 ? '-1'
     : '-2';
-  td.style['color'] = cr > 0 ? 'green'
+  td.style.color = cr > 0 ? 'green'
     : cr < 0 ? 'red'
     : '';
   return td;
@@ -33,7 +33,7 @@ function getVerified(change) {
   td.textContent = verified > 0 ? '+1'
     : verified < 0 ? '-1'
     : '';
-  td.style['color'] = verified > 0 ? 'green'
+  td.style.color = verified > 0 ? 'green'
     : verified < 0 ? 'red'
     : '';
   return td;
@@ -58,7 +58,7 @@ function initUI(items) {
 
     var a = document.createElement('a');
     a.href = '#';
-    var BASE_URL = localStorage['api_endpoint'];
+    var BASE_URL = localStorage.api_endpoint;
     a.addEventListener('click', function(e) {
       chrome.tabs.update(null, {
           url: BASE_URL + '/' + this.getAttribute('change-id')

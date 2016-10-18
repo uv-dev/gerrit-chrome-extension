@@ -1,11 +1,11 @@
 // Saves options to localStorage.
 function save_options() {
   try {
-    localStorage['api_endpoint'] = document.getElementById('api_endpoint').value.replace(/\/*$/, '');
-    localStorage['uname'] = document.getElementById('uname').value || '';
-    localStorage['refresh'] = document.getElementById('refresh').value || '';
-    localStorage['http_password'] = document.getElementById('http_password').value || '';
-    localStorage['query'] = document.getElementById('query').value || '';
+    localStorage.api_endpoint = document.getElementById('api_endpoint').value.replace(/\/*$/, '');
+    localStorage.uname = document.getElementById('uname').value || '';
+    localStorage.refresh = document.getElementById('refresh').value || '';
+    localStorage.http_password = document.getElementById('http_password').value || '';
+    localStorage.query = document.getElementById('query').value || '';
     // TODO: chrome.permissions.request
     chrome.runtime.reload();
   } catch (e) {
