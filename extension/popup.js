@@ -58,14 +58,15 @@ function initUI(items) {
 
     var a = document.createElement('a');
     a.href = '#';
-	var BASE_URL = localStorage['api_endpoint'];
+    var BASE_URL = localStorage['api_endpoint'];
     a.addEventListener('click', function(e) {
       chrome.tabs.update(null, {
-          url: BASE_URL + '/' + this.textContent
+          url: BASE_URL + '/' + this.getAttribute('change-id')
       });
     });
 
-    a.textContent = change._number;
+    a.setAttribute('change-id', change._number);
+    a.textContent = 'cl/' + change._number;
     link.appendChild(a);
 
     message.textContent = change.subject;
