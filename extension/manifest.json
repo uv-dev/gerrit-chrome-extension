@@ -3,7 +3,7 @@
 
     "name": "Gerrit Reviews",
     "description": "Hello Chrome (from Gerrit).",
-    "version": "0.6",
+    "version": "0.7",
 
     "permissions": [
         "alarms",
@@ -31,5 +31,14 @@
     "options_ui": {
         "page": "options.html",
         "chrome_style": true
-    }
+    },
+
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["findAndReplaceDOMText.js", "urls.js"],
+        "run_at": "document_end",
+        "all_frames": true
+      }
+    ]
 }
