@@ -106,10 +106,3 @@ chrome.webNavigation.onCommitted.addListener(onNavigate, {
         {hostSuffix: localStorage.api_endpoint.split('://').pop()}
     ]
   });
-
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if (request.method == "getRootUrl")
-      sendResponse({data: localStorage.api_endpoint});
-    else
-      sendResponse({});
-  });
